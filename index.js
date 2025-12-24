@@ -30,8 +30,7 @@ function render(leads) {
 }
 
 deleteBtn.addEventListener("dblclick", function() {
-    myLeads = []
-    render(myLeads)
+    
 })
 
 inputBtn.addEventListener("click", function() {
