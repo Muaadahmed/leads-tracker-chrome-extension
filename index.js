@@ -1,15 +1,21 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"
-import { getDatabase } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"
+import { getDatabase,
+         ref,
+         push
+    } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"
+
+console.log('env: ', import.meta.env)
+console.log('db: ', import.meta.env.VITE_DATABASE_URL)
 
 const firebaseConfig = {
-    databaseURL: process.env.DATABASE_URL
+    databaseURL: import.meta.env.VITE_DATABASE_URL
 };
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const referenceInDB = ref(database, "leads");
 console.log(firebaseConfig.databaseURL);
 
-let myLeads = []
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
@@ -30,11 +36,10 @@ function render(leads) {
 }
 
 deleteBtn.addEventListener("dblclick", function() {
-    
+
 })
 
 inputBtn.addEventListener("click", function() {
-    myLeads.push(inputEl.value)
+    push(referenceInDB, inputEl.value)
     inputEl.value = ""
-    render(myLeads)
 })
