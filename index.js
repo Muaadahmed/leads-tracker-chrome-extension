@@ -2,7 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebas
 import { getDatabase,
          ref,
          push,
-         onValue
+         onValue,
+         remove
     } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"
 
 
@@ -40,7 +41,8 @@ onValue(referenceInDB, function(snapshot) {
 })
 
 deleteBtn.addEventListener("dblclick", function() {
-
+    remove(referenceInDB)
+    ulEl.innerHTML = ""
 })
 
 inputBtn.addEventListener("click", function() {
