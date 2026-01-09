@@ -35,9 +35,12 @@ function render(leads) {
 }
 
 onValue(referenceInDB, function(snapshot) {
-   const snapshotValues = snapshot.val();
-   const leads = Object.values(snapshotValues);
-   render(leads)
+    const snapshotDoesExist = snapshot.exists();
+    if(snapshotDoesExist){
+        const snapshotValues = snapshot.val();
+        const leads = Object.values(snapshotValues);
+        render(leads)
+    }
 })
 
 deleteBtn.addEventListener("dblclick", function() {
