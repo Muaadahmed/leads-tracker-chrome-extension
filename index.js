@@ -34,7 +34,9 @@ function render(leads) {
 }
 
 onValue(referenceInDB, function(snapshot) {
-    console.log(snapshot.val())
+   const snapshotValues = snapshot.val();
+   const leads = Object.values(snapshotValues);
+   render(leads)
 })
 
 deleteBtn.addEventListener("dblclick", function() {
